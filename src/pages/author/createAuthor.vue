@@ -1,15 +1,24 @@
 <template>
-    <h1>Crear nuevo autor</h1>
+    <h1 class="title">Crear nuevo autor</h1>
 
     <form @submit.prevent="send">
-        <input type="text" placeholder="Nombre" v-model="state.name" required>
-        
-        <input type="email" placeholder="correo@editorial.com" v-model="state.email" required>
-        
-        <input type="text" placeholder="Ciudad Nacimiento" v-model="state.city" required>
-        
-        <input type="date" v-model="state.birthDate" required>
-        <button type="submit">Enviar</button>
+        <div class="input-group mb-3">
+            <label class="input-group-text">Nombre Completo</label>
+            <input type="text" class="form-control" placeholder="Carlos Eduardo Cortes Perez" v-model="state.name" required>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text">Correo</label>
+            <input type="email" class="form-control" placeholder="correo@editorial.com" v-model="state.email" required>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text">Ciudad de Nacimiento</label>
+            <input type="text" class="form-control" placeholder="Bogotá" v-model="state.city" required>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text">Fecha Nacimiento</label>
+            <input type="date" class="form-control" v-model="state.birthDate" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Enviar</button>
     </form>
 </template>
 

@@ -20,12 +20,22 @@ const routes: RouteRecordRaw[] = [
 
     {
         path: "/book",
-        component: () =>  import("./pages/author/listBook.vue")
+        component: () =>  import("./pages/book/listBook.vue")
     },
 
     {
         path: "/book/new",
-        component: () =>  import("./pages/author/createBook.vue")
+        component: () =>  import("./pages/book/createBook.vue")
+    },
+
+    {
+        path: "/editorial",
+        component: () =>  import("./pages/editorial/listEditorial.vue")
+    },
+
+    {
+        path: "/editorial/new",
+        component: () =>  import("./pages/editorial/createEditorial.vue")
     },
     
     {

@@ -1,25 +1,27 @@
 <template>
     <nav class="d-flex justify-content-between align-items-center">
-        <h1 class="title">Autores</h1>
+        <h1 class="title">Editoriales</h1>
         <input type="text" v-model="state.search" placeholder="Filtro">
-        <router-link to="/author/new" class="btn btn-primary">Crear Nuevo</router-link>
+        <router-link to="/editorial/new" class="btn btn-primary">Crear Nuevo</router-link>
     </nav>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Nombre</th>
-                <th scope="col">Fecha Nacimiento</th>
-                <th scope="col">Ciudad</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
                 <th scope="col">Correo</th>
+                <th scope="col">Máximo de libros</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="author in list"
-                :key="author._key">
-                <td>{{ author.name}}</td>
-                <td>{{ author.birthDate}}</td>
-                <td>{{ author.city}}</td>
-                <td>{{ author.email}}</td>
+            <tr v-for="editorial in list"
+                :key="editorial._key">
+                <td>{{ editorial.name}}</td>
+                <td>{{ editorial.address}}</td>
+                <td>{{ editorial.phone}}</td>
+                <td>{{ editorial.email}}</td>
+                <td>{{ editorial.maxBooks}}</td>
             </tr>
         </tbody>
     </table>
@@ -32,25 +34,26 @@ import axios from 'axios'
 export default defineComponent({
     setup() {
         const state = reactive({
-            authors: [],
-            search: "",
+            editorials: [],
+            search: ""
         })
 
         const filtered = computed(function () {
             const regex = new RegExp(state.search.toLowerCase(), "i")
-            return state.authors.filter(function (author){
+            return state.editorials.filter(function (editorial){
                 return (
-                    regex.test(author.name) ||
-                    regex.test(author.email) 
+                    regex.test(editorial.name) ||
+                    regex.test(editorial.email) ||
+                    regex.test(editorial.address)
                 )
             })
         })
 
         onBeforeMount(async function () {
             try {
-                const res = await axios.get("/author")
+                const res = await axios.get("/editorial")
                 if (res.data.content) {
-                    state.authors = res.data.content
+                    state.editorials = res.data.content
                 }
             }
 
